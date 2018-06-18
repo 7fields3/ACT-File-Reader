@@ -32,7 +32,7 @@ This program was made by ASM (7fields3) in June of 2018. Its purpose is to read 
 This program is extremely rudimentary and will likely break in the near future. Do not rely on it. Instead, work to get the CAMS test score import fixed.
 If you see results that don't look right (eg, cut off phone numbers or incomplete birthdates), stop using the program.
 
-NOTE: There's a known issue where middle initials either don't know up or print numbers instead.
+NOTE: There's a known issue where middle initials either don't show up or print numbers instead.
 
 
 This program was created based on the September 2017 - August 2018 record layout found here:
