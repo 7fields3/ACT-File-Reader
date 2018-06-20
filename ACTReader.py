@@ -1,159 +1,144 @@
 import os
 
-# Multiply these by the desired line number to get results for that line.
-# e.x. line 0 = (1050 * 0) = 0, so just use the default values.
-magicNumber = 1050
-magicNumber1 = 1051
+""" Take a location and use it to open a file. Return a LIST of the file. """
 
-""" Opens a file and return a string. """
-def string_returner(flocation):
-    fileopen = open(flocation, "r")
-    strungfile = fileopen.read()
-    fileopen.close()
-    return strungfile
+
+def file_string_splitter(flocation):
+    file_open = open (flocation, "r")
+    # .splitlines() splits the file at every \n (newline)
+    split_file = file_open.read ().splitlines ()
+    file_open.close ()
+    return split_file
+
 
 """ Return the string location of the file to be opened. """
+
+
 def get_location(file):
-    __location__ = os.path.realpath (
-        os.path.join(os.getcwd(), os.path.dirname(__file__)))
+    __location__ = os.path.realpath (os.path.join (os.getcwd (), os.path.dirname (__file__)))
     file_location = __location__ + "\\" + file
     return file_location
 
 
-""" Return the string name of the file to be opened."""
+""" Ask for a file name and return the name string."""
+
+
 def get_file_name():
-    getFile = input("Please type the name of the file "
-                    "including the extenstion (for example, ACTSCORES.TXT):\n")
-    return getFile
+    get_file = input ("Please type the name of the file "
+                      "including the extension (for example, ACTSCORES.TXT):\n")
+    return get_file
 
 
-""" Return the length of the file."""
-def file_len(fname):
-    fileLength = 0
-    for i, l in enumerate(fname):
-        fileLength += 1
-    return fileLength
+""" Calls personal_info and student_scores"""
 
 
 def get_all_info():
-    get_name()
-    stu_gender()
-    date_of_birth()
-    stu_address()
-    phone_number()
-    student_email()
-    grade_level()
-    old_writing_results()
-    old_std_scores()
-    composite_score()
-    english_score()
-    math_score()
-    reading_score()
-    science_score()
+    personal_info ()
+    print ("---")
+    student_scores ()
 
 
-""" The first number is +1051 and the second is +1050. If there's only one, it's +1050.
-    For whatever reason, the pdf that the base numbers came from isn't totally accurate.
-    It's probably just me though."""
-def get_name():
-    print(fileString[(2 + (magicNumber1 * whichLine)):(27 + (magicNumber * whichLine))], end="")
-    print(fileString[44 + (magicNumber * whichLine)], end="")
-    print(" ", end="")
-    print(fileString[(27 + (magicNumber1 * whichLine)):(43 + (magicNumber * whichLine))])
+""" Gets student info """
 
-def stu_address():
-    print("Address: ", end="")
-    print(fileString[(44 + (magicNumber1 * whichLine)):(84 + (magicNumber * whichLine))])
-    print("City: ", end="")
-    print(fileString[(116 + (magicNumber1 * whichLine)):(141 + (magicNumber * whichLine))])
-    print("State: ", end="")
-    print(fileString[(143 + (magicNumber1 * whichLine)):(145 + (magicNumber1 * whichLine))])
-    print("Zip code: ", end="")
-    print(fileString[(145 + (magicNumber1 * whichLine)):(154 + (magicNumber * whichLine))])
 
-def stu_gender():
-    print("Gender: ", end="")
-    print(fileString[(87 + (magicNumber1 * whichLine))])
+def personal_info():
+    # Last name, MI, First name
+    print (entry[2:27], end="")
+    print (entry[43], end="")
+    print (" ", end="")
+    print (entry[27:43])
 
-def grade_level():
-    print("Grade level: ", end="")
-    print(fileString[(88 + (magicNumber1 * whichLine)):(90 + (magicNumber1 * whichLine))])
+    # Gender
+    print ("Gender: ", end="")
+    print (entry[87])
 
-def phone_number():
-    print("Phone: ", end="")
-    print(fileString[(106 + (magicNumber1 * whichLine)):(116 + (magicNumber1 * whichLine))])
+    # Date of birth
+    print ("Date of birth: ", end="")
+    print (entry[158:160], entry[160:162], entry[156:158])
 
-def date_of_birth():
-    print("Date of birth: ", end="")
-    print(fileString[(158 + (magicNumber1 * whichLine)):(160 + (magicNumber1 * whichLine))],
-          fileString[(160 + (magicNumber1 * whichLine)):(162 + (magicNumber1 * whichLine))],
-          fileString[(156 + (magicNumber1 * whichLine)):(158 + (magicNumber1 * whichLine))])
+    # Address
+    print ("Address: ", end="")
+    print (entry[44:84])
+    print ("City: ", end="")
+    print (entry[116:141])
+    print ("State: ", end="")
+    print (entry[143:145])
+    print ("Zip code: ", end="")
+    print (entry[145:150])
 
-# Prints the entire section. Only for tests taken Pre-2015.
-def old_writing_results():
-    print(fileString[(162 + (magicNumber1 * whichLine)):(178 + (magicNumber * whichLine))])
+    # Phone number
+    print ("Phone: ", end="")
+    print (entry[106:116])
 
-# Prints the entire section. Only for tests taken Pre-2015?
-def old_std_scores():
-    print(fileString[(181 + (magicNumber1 * whichLine)):(190 + (magicNumber * whichLine))])
+    # Student email
+    print ("Email: ", end="")
+    print (entry[550:600])
 
-def english_score():
-    print("English: ", end="")
-    print(fileString[(260 + (magicNumber1 * whichLine)):(262 + (magicNumber1 * whichLine))])
+    # Grade level
+    print ("Grade level: ", end="")
+    print (entry[88:90])
 
-def math_score():
-    print("Math: ", end="")
-    print(fileString[(262 + (magicNumber1 * whichLine)):(264 + (magicNumber1 * whichLine))])
 
-def reading_score():
-    print("Reading: ", end="")
-    print(fileString[(264 + (magicNumber1 * whichLine)):(266 + (magicNumber1 * whichLine))])
+""" Gets student scores """
 
-def science_score():
-    print("Science: ", end="")
-    print(fileString[(266 + (magicNumber1 * whichLine)):(268 + (magicNumber1 * whichLine))])
 
-def composite_score():
-    print("Composite: ", end="")
-    print(fileString[(268 + (magicNumber1 * whichLine)):(270 + (magicNumber1 * whichLine))])
+def student_scores():
+    # English Score
+    print ("English: ", end="")
+    print (entry[260:262])
 
-def student_email():
-    print("Email: ", end="")
-    print(fileString[(550 + (magicNumber1 * whichLine)):(600 + (magicNumber * whichLine))])
+    # Math score
+    print ("Math: ", end="")
+    print (entry[262:264])
+
+    # Reading score
+    print ("Reading: ", end="")
+    print (entry[264:266])
+
+    # Science score
+    print ("Science: ", end="")
+    print (entry[266:268])
+
+    # Composite score
+    print ("Composite: ", end="")
+    print (entry[268:270])
+
+
+""" Prints a string indicating the next record is being printed """
+
 
 def next_record():
-    print("\n ******* NEXT RECORD *******\n")
+    print ("\n ******* NEXT RECORD *******\n")
 
 
-
-# Get the length of the file
-fileLength = 0
-fileLength -= 1
-whichLine = 0
-
-fileString = string_returner(get_location(get_file_name()))
-
-for line in fileString.splitlines():
-    fileLength += 1
+# # Prints the pre-2015 writing section.
+#     print(entry[162:178])
+#
+# # Prints the pre-2015 "standardized scores"?
+#     print(entry[181:190])
 
 
+# Gets the location of the file and puts it in a variable
+file_list = file_string_splitter (get_location (get_file_name ()))
 
+entry = ""
+file_len = len (file_list)
+count = 0
 
-# This is the main code. NTS, make everything above into a class that automatically executes the
-# functions.
-while whichLine < fileLength:
-    print("This file contains {} student records.\n".format(fileLength))
-    input("Press ENTER to display.\n")
-    print("\n******* BEGIN PRINTING RECORDS *******\n")
-    for i in range(fileLength):
-        if (i + 1) in range(fileLength):
-            get_all_info()
-            whichLine = whichLine + 1
-            next_record()
-        else:
-            get_all_info()
-            whichLine = whichLine + 1
-            print("******* END OF FILE *******")
+print ("This file contains {} student records.\n".format (file_len))
+input ("Press ENTER to display.\n")
+print ("******* BEGIN PRINTING RECORDS *******\n")
 
+# Prints the records
+for i in file_list:
+    if (count + 1) in range (file_len):
+        entry = i
+        get_all_info ()
+        next_record ()
+        count += 1
+    else:
+        entry = i
+        get_all_info ()
+        print ("******* END OF FILE *******")
 
-input("\nPress ENTER to exit.")
+again = input ("\nPress ENTER to exit.")
